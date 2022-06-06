@@ -11,6 +11,7 @@ const {
 } = require("../../controllers/breakfast-controller");
 
 router.route("/").get(getBreakfasts).post(createBreakfast);
+console.log('breakfast-routes');
 
 router
   .route("/:breakfastId")

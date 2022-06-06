@@ -1,6 +1,6 @@
-const {Schema} = require ('mongoose');
+const mongoose = require ('mongoose');
 
-const dinnerSchema = new Schema({
+const dinnerSchema = new mongoose.Schema({
     ingredients: [
       {
         type: String,
@@ -26,5 +26,7 @@ const dinnerSchema = new Schema({
     },
   });
   
-  module.exports = dinnerSchema;
+const Dinner = mongoose.model("Dinner", dinnerSchema);
+
+  module.exports = Dinner;
   

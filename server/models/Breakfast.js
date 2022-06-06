@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+
+
 const breakfastSchema = new mongoose.Schema({
   ingredients: [
     {
@@ -12,9 +14,9 @@ const breakfastSchema = new mongoose.Schema({
     required: true,
   },
 
-  breakfastId: {
+  breakfast_id: {
     type: String,
-    required: true,
+    required: false,
   },
   image: {
     type: String,
@@ -26,4 +28,6 @@ const breakfastSchema = new mongoose.Schema({
   },
 });
 
-module.exports = {breakfastSchema};
+const Breakfast = mongoose.model("Breakfast", breakfastSchema);
+
+module.exports = Breakfast;

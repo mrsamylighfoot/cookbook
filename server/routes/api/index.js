@@ -6,6 +6,7 @@ const dinnerRoutes = require("./dinner-routes");
 
 router.use("/users", userRoutes);
 router.use("/breakfast", breakfastRoutes);
+console.log('breakfast route on api index');
 router.use("/lunch", lunchRoutes);
 router.use("/dinner", dinnerRoutes);
 
