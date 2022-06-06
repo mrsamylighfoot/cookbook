@@ -1,4 +1,4 @@
-const { Breakfast, User } = require("../models");
+const { Breakfast, User } = require("../models/index");
 
 const breakfastController = {
   // get all breakfasts
@@ -31,15 +31,18 @@ const breakfastController = {
   },
   // create a breakfast
   createBreakfast(req, res) {
+    console.log("createBreakfast on bk-ctrl");
     Breakfast.create(req.body)
       .then((dbBreakfastData) => {
+        console.log(".then createBreakfast on bk-ctrl");
         return User.findOneAndUpdate(
           { _id: req.body.userId },
-          { $push: { breakfasts: dbBreakfastData._id } },
+          { $push: { recipes: dbBreakfastData._id } },
           { new: true }
         );
       })
       .then((dbUserData) => {
+        console.log(".then dbuserdata createbk bk-ctrl");
         if (!dbUserData) {
           return res
             .status(404)
@@ -85,8 +88,8 @@ const breakfastController = {
 
         // remove breakfast id from user's `breakfasts` field
         return User.findOneAndUpdate(
-          { breakfasts: req.params.breakfastId },
-          { $pull: { breakfasts: req.params.breakfastId } },
+          { recipes: req.params.breakfastId },
+          { $pull: { recipes: req.params.breakfastId } },
           { new: true }
         );
       })
